@@ -54,7 +54,7 @@ const server = createServer(async (req, res) => {
         <html lang="en">
         <head>
             <meta charset="UTF-8">
-            <title>Les étudiant</title>
+            <title>Liste des étudiants</title>
             <link href="/style" rel="stylesheet" type="text/css" />
         </head>
         <body>
