@@ -3,40 +3,36 @@
   <head>
       <meta charset="utf-8">
       <title>Ajoutez un utilisateur</title>
-      <link href="../css/style.css" rel="stylesheet" type="text/css" />
+      <link href="/style" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
     <header>
       <nav class="nav">
         <ul class="navList">
-          <li><a type="submit" class="" href="/">Home</a></li>
-          <li><a type="submit" class="" href="/users">Users</a></li>
+          <li class="navItem"><a type="submit" class="" href="/">Home</a></li>
+          <li class="navItem"><a type="submit" class="" href="/users">Users</a></li>
         </ul>
       </nav>
     </header>
 
     <main>
       <div class="container">
-
-          <form action="/" method="POST">
-              <div class="form-group">
-                  <label>Name
-                      <input class="" name="name" type="text" />
-                  </label>
-                  <label>Date
-                    <input class="" name="birth" type="date" />
-                </label>
-              </div>
-              <button type="submit" class="">Ajouter</button>
-          </form>
+        <h1>Ajouter un étudiant</h1>
+        <form action="/" method="POST" class="form">
+          <div class="formGroup">
+              <label class="formLabel">Name:
+                  <input class="" name="name" type="text" />
+              </label>
+              <label class="formLabel">Date:
+                <input class="" name="birth" type="date" />
+            </label>
+          </div>
+          <button type="submit" class="formBtn">Ajouter</button>
+        </form>
 
       </div>
     </div>
     </main>
-
-    <footer>
-
-    </footer>
   </body>
 </html>

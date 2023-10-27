@@ -1,0 +1,55 @@
+.navList {
+  display: flex;
+  justify-content: center;
+  column-gap: 2rem;
+  list-style: none;
+  padding-left: 0;
+}
+
+.navItem a {
+  text-decoration: none;
+}
+
+.container {
+  margin: auto;
+  text-align: center;
+  border: 2px solid black;
+  background-color: beige;
+}
+
+.form {
+  display: block;
+  margin: auto;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
+.formLabel {
+  font-weight: bold;
+}
+
+.formBtn {
+  margin: 2rem 0;
+}
+
+.userList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  list-style: none;
+  padding-left: 0;
+}
+
+.userItem {
+  display: flex;
+  column-gap: 2rem;
+  margin-top: 1rem;
+}
+
+.userItem p {
+  margin: 0;
+}
