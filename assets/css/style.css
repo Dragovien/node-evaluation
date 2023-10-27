@@ -45,9 +45,12 @@
 }
 
 .userItem {
+  margin-top: 1rem;
+}
+
+.userForm {
   display: flex;
   column-gap: 2rem;
-  margin-top: 1rem;
 }
 
 .userItem p {

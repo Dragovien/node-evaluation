@@ -1,9 +1,8 @@
-
 import { createServer } from 'node:http'
 import { createReadStream, readFileSync } from "node:fs";
 import queryString from 'node:querystring';
 import { students } from './Data/students.js'
-import { formattedArray, verifyInput } from './utils.js';
+import { formattedArray, verifyInput, deleteStudent } from './utils.js';
 import dotenv from 'dotenv';
 dotenv.config()
 const { APP_ENV, APP_PORT, APP_LOCALHOST } = process.env
@@ -40,10 +39,12 @@ const server = createServer(async (req, res) => {
 
       let html = '<ul class="userList" >'
 
-      formattedArray(students).map(student => {
+      formattedArray(students).map((student, index) => {
         html += `<li class="userItem" >
+        <form action="/deleteStudent/${index}" method="POST" class="userForm">
             <p>${student.name} ${student.birth}</p>
-            <button>X</button>
+            <button type="submit">X</button>
+        </form>
           </li>`
       })
       html += '</ul>'
@@ -80,12 +81,20 @@ const server = createServer(async (req, res) => {
       createReadStream('./view/404.html').pipe(res)
     }
   } else if (method === 'POST') {
-    if (req.url === '/') {
-      let body = '';
+
+    let url = `${APP_LOCALHOST}:${APP_PORT}`
+    const parsedUrl = new URL(req.url, url)
+    let {pathname} = parsedUrl
+    pathname = pathname.substring(1)
+    const pathPart = pathname.split('/')
+
+    let body = '';
 
       req.on('data', (chunk) => {
         body += chunk.toString();
       });
+
+    if (pathPart.length > 0 && pathPart[0] === '') {
 
       req.on('end', () => {
 
@@ -94,6 +103,11 @@ const server = createServer(async (req, res) => {
         let birth = formData.birth
 
         verifyInput(res, name, birth, students)
+      });
+    } else if (pathPart.length > 0 && pathPart[0] === 'deleteStudent') {
+      
+      req.on('end', () => {
+        deleteStudent(res, students, pathPart[1])
       });
     }
   }

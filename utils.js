@@ -48,3 +48,10 @@ export const verifyInput = (res,name, birth, students) => {
     res.end();
   }
 }
+
+export const deleteStudent = (res, array, index) => {
+  array.splice(index,1)
+  console.log(array)
+  res.writeHead(302, { 'Location': '/users' });
+  res.end();
+}
