@@ -28,20 +28,30 @@ export const verifyInput = (res,name, birth, students) => {
     console.log(`Veuillez rentrer ${message}`)
     res.writeHead(302, { 'Location': '/' });
     res.end()
+    return
   }
 
   if (!isNaN(parseInt(name.trim()))) {
     console.log(`Veuillez rentrer une chaine de caractères`)
     res.writeHead(302, { 'Location': '/' });
     res.end()
+    return
   }
 
   birth = dayjs(birth, 'YYYY-MM-DD').format('YYYY-DD-MM')
+
+  if(birth === 'Invalid Date') {
+    console.log(`Veuillez rentrer une date correcte`)
+    res.writeHead(302, { 'Location': '/' });
+    res.end()
+    return
+  }
 
   if(students.filter(student => student.name === name && student.birth === birth).length > 0) {
     console.log(`L'élève existe déjà`)
     res.writeHead(302, { 'Location': '/' });
     res.end()
+    return
   } else {
     students.push({ name, birth })
     res.writeHead(302, { 'Location': '/' });
@@ -51,7 +61,6 @@ export const verifyInput = (res,name, birth, students) => {
 
 export const deleteStudent = (res, array, index) => {
   array.splice(index,1)
-  console.log(array)
   res.writeHead(302, { 'Location': '/users' });
   res.end();
 }
